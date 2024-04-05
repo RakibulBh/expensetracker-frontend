@@ -120,7 +120,7 @@ const Home = () => {
         </button>
       </div>
       <hr className="border border-white-500 mt-4 mb-6" />
-      <div className="max-h-80 min-h-80 overflow-x-visible overflow-y-auto no-scrollbar flex flex-col">
+      <div className="max-h-80 min-h-80 flex flex-col overflow-y-auto ">
         {expenses &&
           expenses.map((expense) => (
             <Expense

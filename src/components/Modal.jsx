@@ -50,6 +50,11 @@ const Modal = ({ onClose, visible, onSubmit }) => {
               <option value="Health">Health</option>
               <option value="Food">Food</option>
               <option value="Travel">Travel</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Movies">Movies</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Commute">Commute</option>
+              <option value="Home">Home</option>
             </select>
           </div>
           <div className="flex justify-end">

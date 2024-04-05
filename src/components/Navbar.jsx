@@ -18,7 +18,7 @@ export default function Navbar() {
             className="text-3xl text-purple-600 font-bold mr-8 hover:text-purple-700"
             to={"/"}
           >
-            RakibulPro
+            Tracker$
           </Link>
         </div>
         <div>
@@ -26,7 +26,7 @@ export default function Navbar() {
             <li>
               {user && (
                 <Link
-                  className="hover:text-pruple-600 border-2 p-2"
+                  className="hover:text-pruple-600 border-2 p-2 border-purple-400 text-purple-400"
                   to={"/dashboard"}
                 >
                   Dashboard

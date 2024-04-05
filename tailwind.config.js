@@ -9,8 +9,9 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
-    },
   },
-  plugins: [],
+    plugins: [
+      require('tailwind-scrollbar-hide')
+    ],
+  }
 }
-
