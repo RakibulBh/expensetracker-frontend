@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useExpensesContext } from "./useExpensesContext";
 import { useAuthContext } from "./useAuthContext";
 
-const backendUrl = process.env.VITE_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const useExpenseRoutes = () => {
   const [error, setError] = useState(null);

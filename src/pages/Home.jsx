@@ -6,7 +6,7 @@ import Modal from "../components/Modal";
 import { useExpenseRoutes } from "../hooks/useExpenseRoutes";
 import ExpenseModal from "../components/ExpenseModal";
 
-const backendUrl = process.env.VITE_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const { error, isLoading } = useExpenseRoutes();
