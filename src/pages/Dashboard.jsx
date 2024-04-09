@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useExpensesContext } from "../hooks/useExpensesContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_NAME;
 
 const Dashboard = () => {
   const { expenses, dispatch } = useExpensesContext();
