@@ -89,14 +89,14 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex overflow-x-auto space-x-4">
-        <div className="flex-none w-60 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
           <h1 className="text-xl font-bold">This week</h1>
           <p className="text-sm font-semibold text-gray-600">
             {thisWeekDateRange}
           </p>
           <h1 className="font-bold text-md text-green-700 mt-3">£{thisWeek}</h1>
         </div>
-        <div className="flex-none w-60 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
           <h1 className="text-xl font-bold">This month</h1>
           <p className="text-sm font-semibold text-gray-600">
             {thisMonthDateRange}
@@ -106,7 +106,7 @@ const Dashboard = () => {
           </h1>
           <h1 className="font-bold text-md text-green-700 mt-3">{}</h1>
         </div>
-        <div className="flex-none w-60 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
           <h1 className="text-xl font-bold">Last month</h1>
           <p className="text-sm font-semibold text-gray-600">
             {lastMonthDateRange}
