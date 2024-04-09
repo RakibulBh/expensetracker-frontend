@@ -13,10 +13,9 @@ import homeIcon from "../assets/Icons/home.png";
 const categoryIcons = {
   Food: pizzaIcon,
   Health: healthIcon,
-  Travel: travelIcon,
+  Holiday: travelIcon,
   Movies: cinemaIcon,
   Shopping: shoppingIcon,
-  Clothes: shirtIcon,
   Commute: buslIcon,
   Entertainment: gameIcon,
   Home: homeIcon,
