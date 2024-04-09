@@ -88,12 +88,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchExpenses = async () => {
-      const response = await fetch(
-        "https://expensetracker-backend-zeta.vercel.app/expenses",
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
-      );
+      const response = await fetch(`${backendUrl}/expenses`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
 
       const data = await response.json();
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useExpensesContext } from "./useExpensesContext";
 import { useAuthContext } from "./useAuthContext";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 export const useExpenseRoutes = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
@@ -13,17 +15,14 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      "https://expensetracker-backend-zeta.vercel.app/expenses",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ title, amount, category }),
-      }
-    );
+    const response = await fetch(`${backendUrl}/expenses`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({ title, amount, category }),
+    });
 
     const data = await response.json();
 
@@ -45,17 +44,14 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      `https://expensetracker-backend-zeta.vercel.app/expenses/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ title, amount, category, createdAt }),
-      }
-    );
+    const response = await fetch(`${backendUrl}/expenses/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({ title, amount, category, createdAt }),
+    });
 
     const data = await response.json();
 
@@ -77,15 +73,12 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      `https://expensetracker-backend-zeta.vercel.app/expenses/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    const response = await fetch(`${backendUrl}/expenses/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
     const data = await response.json();
 

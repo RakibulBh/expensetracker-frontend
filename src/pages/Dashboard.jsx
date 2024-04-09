@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useExpensesContext } from "../hooks/useExpensesContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 const Dashboard = () => {
   const { expenses, dispatch } = useExpensesContext();
   const { user } = useAuthContext();
@@ -17,12 +19,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchThisWeek = async () => {
       // this week
-      const thisWeekFetch = await fetch(
-        "https://expensetracker-backend-zeta.vercel.app/expenses/thisweek",
-        {
-          headers: { authorization: `Bearer ${user.token}` },
-        }
-      );
+      const thisWeekFetch = await fetch(`${backendUrl}/expenses/thisweek`, {
+        headers: { authorization: `Bearer ${user.token}` },
+      });
 
       if (thisWeekFetch.ok) {
         const thisWeekData = await thisWeekFetch.json();
@@ -41,12 +40,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchLastMonth = async () => {
       // last month
-      const lastMonthFetch = await fetch(
-        "https://expensetracker-backend-zeta.vercel.app/expenses/lastmonth",
-        {
-          headers: { authorization: `Bearer ${user.token}` },
-        }
-      );
+      const lastMonthFetch = await fetch(`${backendUrl}/expenses/lastmonth`, {
+        headers: { authorization: `Bearer ${user.token}` },
+      });
 
       if (lastMonthFetch.ok) {
         const lastMonthData = await lastMonthFetch.json();
@@ -65,12 +61,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchThisMonth = async () => {
       // this month
-      const thisMonthFetch = await fetch(
-        "https://expensetracker-backend-zeta.vercel.app/expenses/thismonth",
-        {
-          headers: { authorization: `Bearer ${user.token}` },
-        }
-      );
+      const thisMonthFetch = await fetch(`${backendUrl}/expenses/thismonth`, {
+        headers: { authorization: `Bearer ${user.token}` },
+      });
 
       if (thisMonthFetch.ok) {
         const thisMonthData = await thisMonthFetch.json();

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export const useRegister = () => {
   const [error, setError] = useState(null);
@@ -10,14 +11,11 @@ export const useRegister = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      "https://expensetracker-backend-zeta.vercel.app/auth/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-      }
-    );
+    const response = await fetch(`${backendUrl}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, email, password }),
+    });
 
     const data = await response.json();
 
