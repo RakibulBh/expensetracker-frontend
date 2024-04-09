@@ -27,7 +27,7 @@ const Expense = ({ id, category, title, amount, date, onEdit }) => {
   return (
     <div
       onClick={() => onEdit({ id, category, title, amount, date })}
-      className="hover:scale-105 transition-transform duration-300 ease-in-out text-white w-full flex justify-between h-10 bg-purple-600 rounded-full align-middle items-center px-10 py-8 mb-5 overflow-hidden"
+      className="hover:cursor-pointer text-white w-full flex justify-between h-10 bg-purple-600 rounded-full align-middle items-center px-10 py-8 mb-5 overflow-hidden"
     >
       <div className="flex items-center">
         <img className="w-10 h-10" src={icon} alt={category} />
