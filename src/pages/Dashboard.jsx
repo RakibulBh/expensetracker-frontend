@@ -84,32 +84,27 @@ const Dashboard = () => {
       <div className="h-96 w-full bg-purple-200 rounded-xl p-10 shadow-lg">
         <h1>Coming soon</h1>
       </div>
-      <div className="flex overflow-x-auto space-x-4">
-        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+      <div className="flex flex-col md:flex-row overflow-x-auto space-x-0 md:space-x-4">
+        <div className="flex flex-col justify-evenly items-center w-full md:w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7 mb-4 md:mb-0">
           <h1 className="text-xl font-bold">This week</h1>
           <p className="text-sm font-semibold text-gray-600">
             {thisWeekDateRange}
           </p>
-          <h1 className="font-bold text-md text-green-700 mt-3">£{thisWeek}</h1>
+          <h1 className="font-bold text-md text-green-700">£{thisWeek}</h1>
         </div>
-        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+        <div className="flex flex-col justify-evenly items-center w-full md:w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7 mb-4 md:mb-0">
           <h1 className="text-xl font-bold">This month</h1>
           <p className="text-sm font-semibold text-gray-600">
             {thisMonthDateRange}
           </p>
-          <h1 className="font-bold text-md text-green-700 mt-3">
-            £{thisMonth}
-          </h1>
-          <h1 className="font-bold text-md text-green-700 mt-3">{}</h1>
+          <h1 className="font-bold text-md text-green-700">£{thisMonth}</h1>
         </div>
-        <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
+        <div className="flex flex-col justify-evenly items-center w-full md:w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
           <h1 className="text-xl font-bold">Last month</h1>
           <p className="text-sm font-semibold text-gray-600">
             {lastMonthDateRange}
           </p>
-          <h1 className="font-bold text-md text-green-700 mt-3">
-            £{lastMonth}
-          </h1>
+          <h1 className="font-bold text-md text-green-700">£{lastMonth}</h1>
         </div>
       </div>
     </div>
