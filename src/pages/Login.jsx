@@ -10,18 +10,20 @@ function Login() {
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
+  console.log(error);
+
   useEffect(() => {
-    if (error && error.errors) {
-      Object.keys(error.errors).forEach((key) => {
-        const errorMessage = error.errors[key];
+    if (error && typeof error === "object") {
+      Object.values(error).forEach((errorMessage) => {
         toast.error(errorMessage);
       });
-    } else if (error && error.error) {
-      toast.error(error.error);
+    } else if (error && typeof error === "string") {
+      toast.error(error);
     }
   }, [error]);
 
   const handleSubmit = async (e) => {
+    console.log(email, password);
     e.preventDefault();
 
     await login(email, password);
@@ -58,9 +60,7 @@ function Login() {
               autocomplete={"username"}
               placeholder="Email"
               className={`border py-1 px-2 w-full ${
-                error && error.errors.email
-                  ? "border-red-400 "
-                  : "border-gray-400 "
+                error && error.email ? "border-red-400 " : "border-gray-400 "
               }`}
             />
             <Input
@@ -70,9 +70,7 @@ function Login() {
               placeholder="Password"
               autocomplete="current-password"
               className={`border py-1 px-2 w-full ${
-                error && error.errors.password
-                  ? "border-red-400 "
-                  : "border-gray-400 "
+                error && error.password ? "border-red-400 " : "border-gray-400 "
               }`}
             />
           </div>

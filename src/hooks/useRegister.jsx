@@ -4,22 +4,28 @@ import { useAuthContext } from "./useAuthContext";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const useRegister = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  const register = async (firstName, lastName, email, password, checkbox) => {
-    let errors = {};
+  const register = async ({
+    firstName,
+    lastName,
+    email,
+    password,
+    checkbox,
+  }) => {
+    const errors = {};
 
-    if (!firstName.trim()) {
+    if (!firstName) {
       errors.firstName = "First name cannot be empty.";
     }
 
-    if (!lastName.trim()) {
+    if (!lastName) {
       errors.lastName = "Last name cannot be empty.";
     }
 
-    if (!email.trim()) {
+    if (!email) {
       errors.email = "Email cannot be empty.";
     }
 
@@ -32,7 +38,7 @@ export const useRegister = () => {
     }
 
     if (Object.keys(errors).length > 0) {
-      setError({ errors });
+      setError(errors);
       return;
     }
 
@@ -47,8 +53,10 @@ export const useRegister = () => {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!response.ok) {
-      setError(data.message);
+      setError(data);
       setIsLoading(false);
     }
 

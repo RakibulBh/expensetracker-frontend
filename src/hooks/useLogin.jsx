@@ -4,14 +4,14 @@ import { useAuthContext } from "./useAuthContext";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const useLogin = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
   const login = async (email, password) => {
-    let errors = {};
+    const errors = {};
 
-    if (!email.trim()) {
+    if (!email) {
       errors.email = "Email cannot be empty.";
     }
 
@@ -20,7 +20,7 @@ export const useLogin = () => {
     }
 
     if (Object.keys(errors).length > 0) {
-      setError({ errors });
+      setError(errors);
       return;
     }
 

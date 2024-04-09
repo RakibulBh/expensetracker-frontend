@@ -14,20 +14,19 @@ function Register() {
   const { register, error, isLoading } = useRegister();
 
   useEffect(() => {
-    if (error && error.errors) {
-      Object.keys(error.errors).forEach((key) => {
-        const errorMessage = error.errors[key];
+    if (error && typeof error === "object") {
+      Object.values(error).forEach((errorMessage) => {
         toast.error(errorMessage);
       });
-    } else if (error && error.error) {
-      toast.error(error.error);
+    } else if (error && typeof error === "string") {
+      toast.error(error);
     }
   }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    await register(firstName, lastName, email, password, checkbox);
+    console.log(firstName, lastName, email, password, checkbox);
+    await register({ firstName, lastName, email, password, checkbox });
   };
 
   // when nav bar is fixed, change the whole width to be full for large screens and 10/12 for smaller devices.
@@ -61,9 +60,7 @@ function Register() {
               type="text"
               placeholder="First name"
               className={`border py-1 px-2 ${
-                error && error.errors.firstName
-                  ? "border-red-400"
-                  : "border-gray-400"
+                error && error.firstName ? "border-red-400" : "border-gray-400"
               }`}
             />
             <Input
@@ -72,9 +69,7 @@ function Register() {
               type="text"
               placeholder="Last name"
               className={`border py-1 px-2 ${
-                error && error.errors.lastName
-                  ? "border-red-400 "
-                  : "border-gray-400 "
+                error && error.lastName ? "border-red-400 " : "border-gray-400 "
               }`}
             />
           </div>
@@ -85,9 +80,7 @@ function Register() {
               type="email"
               placeholder="Email"
               className={`border py-1 px-2 w-full ${
-                error && error.errors.email
-                  ? "border-red-400 "
-                  : "border-gray-400 "
+                error && error.email ? "border-red-400 " : "border-gray-400 "
               }`}
             />
           </div>
@@ -99,9 +92,7 @@ function Register() {
               placeholder="Password"
               autocomplete="current-password"
               className={`border py-1 px-2 w-full ${
-                error && error.errors.password
-                  ? "border-red-400 "
-                  : "border-gray-400 "
+                error && error.password ? "border-red-400 " : "border-gray-400 "
               }`}
             />
           </div>
@@ -111,14 +102,12 @@ function Register() {
               onChange={() => setCheckbox(!checkbox)}
               type="checkbox"
               className={`border mr-2 ${
-                error && error.errors.checkbox
-                  ? "border-red-400"
-                  : "border-gray-400"
+                error && error.checkbox ? "border-red-400" : "border-gray-400"
               }`}
             />
             <span
               className={`underline ${
-                error && error.errors.checkbox ? "text-red-400" : ""
+                error && error.checkbox ? "text-red-400" : ""
               }`}
             >
               I accept the
