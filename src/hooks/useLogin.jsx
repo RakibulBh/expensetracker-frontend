@@ -9,20 +9,18 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext();
 
   const login = async (email, password) => {
-    if (email.length === 0 && password.length == 0) {
-      setError({ error: "password or email cannot be empty" });
-      return;
+    let errors = {};
+
+    if (!email.trim()) {
+      errors.email = "Email cannot be empty.";
     }
 
-    if (email.length === 0) {
-      setError({ error: "email cannot be empty." });
-      return;
+    if (!password) {
+      errors.password = "Password cannot be empty.";
     }
 
-    if (password.length == 0) {
-      setError({
-        error: "password cannot be empty.",
-      });
+    if (Object.keys(errors).length > 0) {
+      setError({ errors });
       return;
     }
 

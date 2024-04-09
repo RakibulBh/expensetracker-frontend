@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRegister } from "../hooks/useRegister";
 import RegisterBackground from "../assets/Register-Background.png";
 import Input from "../components/Input";
 import { Link } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +12,15 @@ function Register() {
   const [password, setPassword] = useState("");
   const [checkbox, setCheckbox] = useState(false);
   const { register, error, isLoading } = useRegister();
+
+  useEffect(() => {
+    if (error && error.errors) {
+      Object.keys(error.errors).forEach((key) => {
+        const errorMessage = error.errors[key];
+        toast.error(errorMessage);
+      });
+    }
+  }, [error]); // Depend on the error object so this effect runs when it changes
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,6 +136,7 @@ function Register() {
           </div>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 }

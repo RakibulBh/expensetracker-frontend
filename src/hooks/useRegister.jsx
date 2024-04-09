@@ -9,7 +9,7 @@ export const useRegister = () => {
   const { dispatch } = useAuthContext();
 
   const register = async (firstName, lastName, email, password, checkbox) => {
-    let errors = {}; // Initialize an object to store potential errors
+    let errors = {};
 
     if (!firstName.trim()) {
       errors.firstName = "First name cannot be empty.";
@@ -32,7 +32,7 @@ export const useRegister = () => {
     }
 
     if (Object.keys(errors).length > 0) {
-      setError({ errors }); // Assuming setError can handle an object of errors
+      setError({ errors });
       return;
     }
 
