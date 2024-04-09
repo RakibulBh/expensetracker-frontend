@@ -12,8 +12,6 @@ function Register() {
   const [checkbox, setCheckbox] = useState(false);
   const { register, error, isLoading } = useRegister();
 
-  //route: http://localhost:3001/auth/register
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,10 +28,10 @@ function Register() {
         <h1 className="text-white text-3xl mb-3">Welcome</h1>
         <div>
           <p className="text-white">
-            A nice website developed by Rakibul Bhuiyan
+            A nice website developed by Rakibul Bhuiyan.
             <Link
               to="https://www.linkedin.com/in/rakibulb/"
-              className="text-purple-400"
+              className="text-purple-400 ml-2"
             >
               Connect with me on linkedIn.
             </Link>
@@ -50,16 +48,22 @@ function Register() {
               onChange={(e) => setFirstName(e.target.value)}
               type="text"
               placeholder="First name"
-              className="border border-gray-400 py-1 px-2"
-              error={error}
+              className={`border py-1 px-2 ${
+                error && error.errors.firstName
+                  ? "border-red-400"
+                  : "border-gray-400"
+              }`}
             />
             <Input
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               type="text"
               placeholder="Last name"
-              className="border border-gray-400 py-1 px-2"
-              error={error}
+              className={`border py-1 px-2 ${
+                error && error.errors.lastName
+                  ? "border-red-400 "
+                  : "border-gray-400 "
+              }`}
             />
           </div>
           <div className="mt-5">
@@ -68,8 +72,11 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Email"
-              className="border border-gray-400 py-1 px-2 w-full"
-              error={error}
+              className={`border py-1 px-2 w-full ${
+                error && error.errors.email
+                  ? "border-red-400 "
+                  : "border-gray-400 "
+              }`}
             />
           </div>
           <div className="mt-5">
@@ -78,19 +85,30 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Password"
-              className="border border-gray-400 py-1 px-2 w-full"
-              error={error}
+              autocomplete="current-password"
+              className={`border py-1 px-2 w-full ${
+                error && error.errors.password
+                  ? "border-red-400 "
+                  : "border-gray-400 "
+              }`}
             />
           </div>
           <div className="mt-5">
-            <Input
-              value={checkbox}
+            <input
+              checked={checkbox}
               onChange={() => setCheckbox(!checkbox)}
               type="checkbox"
-              className="border border-gray-400 mr-2"
-              error={error}
+              className={`border mr-2 ${
+                error && error.errors.checkbox
+                  ? "border-red-400"
+                  : "border-gray-400"
+              }`}
             />
-            <span>
+            <span
+              className={`underline ${
+                error && error.errors.checkbox ? "text-red-400" : ""
+              }`}
+            >
               I accept the
               <a className="text-purple-500 font-semibold ml-1 mr-1" href="">
                 Terms of Use

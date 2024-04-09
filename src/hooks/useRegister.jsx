@@ -8,7 +8,34 @@ export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
-  const register = async (firstName, lastName, email, password) => {
+  const register = async (firstName, lastName, email, password, checkbox) => {
+    let errors = {}; // Initialize an object to store potential errors
+
+    if (!firstName.trim()) {
+      errors.firstName = "First name cannot be empty.";
+    }
+
+    if (!lastName.trim()) {
+      errors.lastName = "Last name cannot be empty.";
+    }
+
+    if (!email.trim()) {
+      errors.email = "Email cannot be empty.";
+    }
+
+    if (!password) {
+      errors.password = "Password cannot be empty.";
+    }
+
+    if (!checkbox) {
+      errors.checkbox = "You must agree to the terms and conditions.";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setError({ errors }); // Assuming setError can handle an object of errors
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 

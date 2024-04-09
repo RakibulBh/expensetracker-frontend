@@ -24,12 +24,12 @@ function Login() {
         <h1 className="text-white text-3xl mb-3">Welcome</h1>
         <div>
           <p className="text-white">
-            An expense tracker made by Rakibul Bhuiyan.
+            A nice website developed by Rakibul Bhuiyan.
             <Link
               to="https://www.linkedin.com/in/rakibulb/"
-              className="text-purple-400"
+              className="text-purple-400 ml-2"
             >
-              LinkedIn.
+              Connect with me on linkedIn.
             </Link>
           </p>
         </div>
@@ -44,7 +44,6 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Email"
-              error={error}
               className={`border py-1 px-2 w-full ${
                 error && error.error.includes("email")
                   ? "border-red-400 "
@@ -56,7 +55,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Password"
-              error={error}
+              autocomplete="current-password"
               className={`border py-1 px-2 w-full ${
                 error && error.error.includes("password")
                   ? "border-red-400 "

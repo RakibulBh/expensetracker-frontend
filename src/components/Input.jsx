@@ -1,4 +1,11 @@
-const Input = ({ value, onChange, type, placeholder, error, className }) => {
+const Input = ({
+  value,
+  onChange,
+  type,
+  placeholder,
+  className,
+  autocomplete,
+}) => {
   return (
     <input
       value={value}
@@ -6,6 +13,7 @@ const Input = ({ value, onChange, type, placeholder, error, className }) => {
       type={type}
       placeholder={placeholder}
       className={className}
+      autoComplete={autocomplete}
     />
   );
 };
