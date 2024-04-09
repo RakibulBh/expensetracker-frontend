@@ -13,14 +13,17 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:3001/expenses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({ title, amount, category }),
-    });
+    const response = await fetch(
+      "expensetracker-backend-zeta.vercel.app/expenses",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ title, amount, category }),
+      }
+    );
 
     const data = await response.json();
 
@@ -42,14 +45,17 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(`http://localhost:3001/expenses/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({ title, amount, category, createdAt }),
-    });
+    const response = await fetch(
+      `expensetracker-backend-zeta.vercel.app/expenses/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ title, amount, category, createdAt }),
+      }
+    );
 
     const data = await response.json();
 
@@ -71,12 +77,15 @@ export const useExpenseRoutes = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(`http://localhost:3001/expenses/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      `expensetracker-backend-zeta.vercel.app/expenses/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     const data = await response.json();
 
