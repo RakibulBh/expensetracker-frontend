@@ -14,7 +14,7 @@ export const useExpenseRoutes = () => {
     setError(null);
 
     const response = await fetch(
-      "expensetracker-backend-zeta.vercel.app/expenses",
+      "https://expensetracker-backend-zeta.vercel.app/expenses",
       {
         method: "POST",
         headers: {
@@ -46,7 +46,7 @@ export const useExpenseRoutes = () => {
     setError(null);
 
     const response = await fetch(
-      `expensetracker-backend-zeta.vercel.app/expenses/${id}`,
+      `https://expensetracker-backend-zeta.vercel.app/expenses/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -78,7 +78,7 @@ export const useExpenseRoutes = () => {
     setError(null);
 
     const response = await fetch(
-      `expensetracker-backend-zeta.vercel.app/expenses/${id}`,
+      `https://expensetracker-backend-zeta.vercel.app/expenses/${id}`,
       {
         method: "DELETE",
         headers: {

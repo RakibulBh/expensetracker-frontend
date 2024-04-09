@@ -11,7 +11,7 @@ export const useLogin = () => {
     setError(null);
 
     const response = await fetch(
-      "expensetracker-backend-zeta.vercel.app/auth/login",
+      "https://expensetracker-backend-zeta.vercel.app/auth/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

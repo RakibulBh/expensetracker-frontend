@@ -18,7 +18,7 @@ const Dashboard = () => {
     const fetchThisWeek = async () => {
       // this week
       const thisWeekFetch = await fetch(
-        "expensetracker-backend-zeta.vercel.app/expenses/thisweek",
+        "https://expensetracker-backend-zeta.vercel.app/expenses/thisweek",
         {
           headers: { authorization: `Bearer ${user.token}` },
         }
@@ -42,7 +42,7 @@ const Dashboard = () => {
     const fetchLastMonth = async () => {
       // last month
       const lastMonthFetch = await fetch(
-        "expensetracker-backend-zeta.vercel.app/expenses/lastmonth",
+        "https://expensetracker-backend-zeta.vercel.app/expenses/lastmonth",
         {
           headers: { authorization: `Bearer ${user.token}` },
         }
@@ -66,7 +66,7 @@ const Dashboard = () => {
     const fetchThisMonth = async () => {
       // this month
       const thisMonthFetch = await fetch(
-        "expensetracker-backend-zeta.vercel.app/expenses/thismonth",
+        "https://expensetracker-backend-zeta.vercel.app/expenses/thismonth",
         {
           headers: { authorization: `Bearer ${user.token}` },
         }
