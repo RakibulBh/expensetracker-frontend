@@ -33,24 +33,32 @@ const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentExpense, setCurrentExpense] = useState(null);
 
-  const onSubmitEditExpense = (id, newTitle, newAmount, newCategory) => {
+  const onSubmitEditExpense = ({
+    id,
+    newTitle,
+    newAmount,
+    newCategory,
+    createdAt,
+  }) => {
     editExpense({
       id,
       title: newTitle,
       amount: newAmount,
       category: newCategory,
+      createdAt,
     });
     if (!error) {
       setIsEditing(false);
     }
   };
 
-  const handleEditExpense = (id, category, title, amount) => {
+  const handleEditExpense = ({ id, category, title, amount, date }) => {
     setCurrentExpense({
       id,
       category,
       title,
       amount,
+      createdAt: date,
     });
     setIsEditing(true);
   };
@@ -130,6 +138,7 @@ const Home = () => {
               category={expense.category}
               title={expense.title}
               amount={expense.amount}
+              date={expense.createdAt}
             />
           ))}
         {expenses.length < 1 && (

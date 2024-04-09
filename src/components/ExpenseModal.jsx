@@ -2,15 +2,20 @@ import React from "react";
 import { useState } from "react";
 
 const ExpenseModal = ({ onSubmitEdit, data, onClose, onDelete }) => {
-  const { title, amount, category, id } = data;
+  const { title, amount, category, createdAt, id } = data;
 
   const [newTitle, setTitle] = useState(title);
   const [newAmount, setAmount] = useState(amount);
   const [newCategory, setCategory] = useState(category);
 
+  // date
+  const dateToFormat = new Date(createdAt);
+  const formattedDate = dateToFormat.toISOString().split("T")[0];
+  const [newDate, setDate] = useState(formattedDate);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmitEdit(id, newTitle, newAmount, newCategory);
+    onSubmitEdit({ id, newTitle, newAmount, newCategory, createdAt: newDate });
   };
 
   return (
@@ -20,7 +25,7 @@ const ExpenseModal = ({ onSubmitEdit, data, onClose, onDelete }) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30"
     >
       <div id="form" className="bg-white w-96 rounded-lg p-8">
-        <h2 className="text-xl font-semibnew mb-4">Add New Expense</h2>
+        <h2 className="text-xl font-semibnew mb-4">Edit Expense</h2>
         <form onSubmit={handleSubmit} className="flex flex-col" action="">
           <div className="mb-4">
             <input
@@ -58,7 +63,15 @@ const ExpenseModal = ({ onSubmitEdit, data, onClose, onDelete }) => {
               <option value="Home">Home</option>
             </select>
           </div>
-          <div className="flex justify-end ">
+          <div>
+            <input
+              type="date"
+              className="w-full p-3 border border-gray-300 rounded-md focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+              onChange={(e) => setDate(e.target.value)}
+              value={newDate}
+            />
+          </div>
+          <div className="flex justify-end mt-5">
             <div className="flex w-full justify-between">
               <button
                 onClick={() => onDelete(id)}

@@ -38,7 +38,7 @@ export const useExpenseRoutes = () => {
     }
   };
 
-  const editExpense = async ({ id, title, amount, category }) => {
+  const editExpense = async ({ id, title, amount, category, createdAt }) => {
     setIsLoading(true);
     setError(null);
 
@@ -48,7 +48,7 @@ export const useExpenseRoutes = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
       },
-      body: JSON.stringify({ title, amount, category }),
+      body: JSON.stringify({ title, amount, category, createdAt }),
     });
 
     const data = await response.json();
