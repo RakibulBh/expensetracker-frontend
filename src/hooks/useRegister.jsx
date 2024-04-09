@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = process.env.VITE_BACKEND_URL;
 
 export const useRegister = () => {
   const [error, setError] = useState(null);
