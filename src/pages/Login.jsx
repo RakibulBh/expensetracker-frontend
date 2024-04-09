@@ -16,6 +16,8 @@ function Login() {
         const errorMessage = error.errors[key];
         toast.error(errorMessage);
       });
+    } else if (error && error.error) {
+      toast.error(error.error);
     }
   }, [error]);
 

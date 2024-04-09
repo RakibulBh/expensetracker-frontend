@@ -19,8 +19,10 @@ function Register() {
         const errorMessage = error.errors[key];
         toast.error(errorMessage);
       });
+    } else if (error && error.error) {
+      toast.error(error.error);
     }
-  }, [error]); // Depend on the error object so this effect runs when it changes
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
