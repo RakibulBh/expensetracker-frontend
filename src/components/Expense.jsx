@@ -5,7 +5,6 @@ import healthIcon from "../assets/Icons/heart.png";
 import travelIcon from "../assets/Icons/plane.png";
 import gameIcon from "../assets/Icons/gamepad-2.png";
 import buslIcon from "../assets/Icons/bus.png";
-import shirtIcon from "../assets/Icons/shirt.png";
 import shoppingIcon from "../assets/Icons/shopping-cart.png";
 import cinemaIcon from "../assets/Icons/clapperboard.png";
 import homeIcon from "../assets/Icons/home.png";

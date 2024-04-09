@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import { useExpenseRoutes } from "../hooks/useExpenseRoutes";
 import ExpenseModal from "../components/ExpenseModal";
 import { toast, Toaster } from "react-hot-toast";
+import CountUp from "react-countup";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -179,7 +180,13 @@ const Home = () => {
       <Toaster />
       <div className="flex flex-col items-center justify-between mt-20">
         <h1 className="text-6xl text-white font-semibold ">
-          {total == 0 ? "" : "-"}£{total}
+          <CountUp
+            end={total}
+            duration={1}
+            prefix={total === 0 ? "£" : "-£"}
+            separator=","
+            decimal="."
+          />
         </h1>
         <button
           onClick={() => setShowExpenseForm(true)}
