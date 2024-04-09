@@ -5,11 +5,27 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Modal from "../components/Modal";
 import { useExpenseRoutes } from "../hooks/useExpenseRoutes";
 import ExpenseModal from "../components/ExpenseModal";
+import { toast, Toaster } from "react-hot-toast";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
+  function parseDate(dateString) {
+    const parts = dateString.split("-");
+    const date = new Date(parts[0], parts[1] - 1, parts[2]);
+    return date;
+  }
+
   const { error, isLoading } = useExpenseRoutes();
+
+  const [errors, setErrors] = useState();
+
+  useEffect(() => {
+    if (errors) {
+      toast.error(errors);
+      setErrors(null);
+    }
+  }, [errors]);
 
   // context
   const { expenses, dispatch } = useExpensesContext();
@@ -20,6 +36,21 @@ const Home = () => {
   const [showExpenseForm, setShowExpenseForm] = useState(false);
 
   const onSubmitAddExpense = (title, amount, category) => {
+    if (title.length === 0) {
+      setErrors("Title cannot be empty.");
+      return;
+    }
+
+    const parsedAmount = parseFloat(amount);
+
+    if (isNaN(parsedAmount)) {
+      setErrors("Amount must be a number.");
+      return;
+    } else if (parsedAmount < 0) {
+      setErrors("Amount cannot be negative.");
+      return;
+    }
+
     addExpense(title, amount, category);
     if (!error) {
       setShowExpenseForm(false);
@@ -42,6 +73,31 @@ const Home = () => {
     newCategory,
     createdAt,
   }) => {
+    if (newTitle.length === 0) {
+      setErrors("Title cannot be empty.");
+      return;
+    }
+
+    const parsedAmount = parseFloat(newAmount);
+
+    if (isNaN(parsedAmount)) {
+      setErrors("Amount must be a number.");
+      return;
+    } else if (parsedAmount < 0) {
+      setErrors("Amount cannot be negative.");
+      return;
+    }
+
+    const createdAtDate = parseDate(createdAt);
+
+    // You can directly compare dates without setting hours to 0 since the provided dates do not have time parts
+    const today = new Date();
+
+    if (createdAtDate > today) {
+      setErrors("The date cannot be in the future.");
+      return;
+    }
+
     editExpense({
       id,
       title: newTitle,
@@ -118,6 +174,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col bg-purple-500 rounded-b-xl p-10">
+      <Toaster />
       <div className="flex flex-col items-center justify-between mt-20">
         <h1 className="text-6xl text-white font-semibold ">
           {total == 0 ? "" : "-"}£{total}
