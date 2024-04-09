@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useRegister } from "../hooks/useRegister";
 import RegisterBackground from "../assets/Register-Background.png";
+import Input from "../components/Input";
+import { Link } from "react-router-dom";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +17,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await register(firstName, lastName, email, password);
+    await register(firstName, lastName, email, password, checkbox);
   };
 
   // when nav bar is fixed, change the whole width to be full for large screens and 10/12 for smaller devices.
@@ -28,17 +30,13 @@ function Register() {
         <h1 className="text-white text-3xl mb-3">Welcome</h1>
         <div>
           <p className="text-white">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
-            beatae nobis quod iste non. Modi veritatis sit illum, voluptate cum
-            qui provident at unde! Quas eius quam adipisci molestias vitae! Quis
-            tempore ullam odit doloremque dolorem neque autem pariatur
-            reprehenderit repellendus odio, laudantium deleniti adipisci
-            tempora, provident, distinctio perferendis voluptatem impedit libero
-            sed. Dolorum accusamus praesentium quis optio inventore rem.
-            Deleniti repudiandae molestias.{" "}
-            <a href="#" className="text-purple-400">
-              Learn more.
-            </a>
+            A nice website developed by Rakibul Bhuiyan
+            <Link
+              to="https://www.linkedin.com/in/rakibulb/"
+              className="text-purple-400"
+            >
+              Connect with me on linkedIn.
+            </Link>
           </p>
         </div>
       </div>
@@ -47,55 +45,58 @@ function Register() {
         <p className="mb-4">Create your account. It's free.</p>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-5">
-            <input
+            <Input
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               type="text"
               placeholder="First name"
               className="border border-gray-400 py-1 px-2"
+              error={error}
             />
-            <input
+            <Input
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               type="text"
               placeholder="Last name"
               className="border border-gray-400 py-1 px-2"
+              error={error}
             />
           </div>
           <div className="mt-5">
-            <input
+            <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Email"
               className="border border-gray-400 py-1 px-2 w-full"
+              error={error}
             />
           </div>
           <div className="mt-5">
-            <input
+            <Input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="Passoword"
+              placeholder="Password"
               className="border border-gray-400 py-1 px-2 w-full"
+              error={error}
             />
           </div>
           <div className="mt-5">
-            <input
+            <Input
               value={checkbox}
               onChange={() => setCheckbox(!checkbox)}
               type="checkbox"
               className="border border-gray-400 mr-2"
-              name=""
-              id=""
+              error={error}
             />
             <span>
               I accept the
-              <a className="text-purple-500 font-semibold" href="">
+              <a className="text-purple-500 font-semibold ml-1 mr-1" href="">
                 Terms of Use
-              </a>{" "}
-              &{" "}
-              <a className="text-purple-500 font-semibold" href="">
+              </a>
+              &
+              <a className="text-purple-500 font-semibold ml-1 " href="">
                 Privacy Policy
               </a>
             </span>

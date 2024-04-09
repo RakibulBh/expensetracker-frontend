@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import RegisterBackground from "../assets/Register-Background.png";
+import { Link } from "react-router-dom";
+import Input from "../components/Input";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
-
-  //route: http://localhost:3001/auth/login
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,17 +24,13 @@ function Login() {
         <h1 className="text-white text-3xl mb-3">Welcome</h1>
         <div>
           <p className="text-white">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
-            beatae nobis quod iste non. Modi veritatis sit illum, voluptate cum
-            qui provident at unde! Quas eius quam adipisci molestias vitae! Quis
-            tempore ullam odit doloremque dolorem neque autem pariatur
-            reprehenderit repellendus odio, laudantium deleniti adipisci
-            tempora, provident, distinctio perferendis voluptatem impedit libero
-            sed. Dolorum accusamus praesentium quis optio inventore rem.
-            Deleniti repudiandae molestias.{" "}
-            <a href="#" className="text-purple-400">
-              Learn more.
-            </a>
+            An expense tracker made by Rakibul Bhuiyan.
+            <Link
+              to="https://www.linkedin.com/in/rakibulb/"
+              className="text-purple-400"
+            >
+              LinkedIn.
+            </Link>
           </p>
         </div>
       </div>
@@ -42,26 +38,37 @@ function Login() {
         <h2 className="text-3xl mb-4">Login</h2>
         <p className="mb-4">Welcome back.</p>
         <form onSubmit={handleSubmit}>
-          <div className="mt-5">
-            <input
+          <div className="mt-5 space-y-6">
+            <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Email"
-              className="border border-gray-400 py-1 px-2 w-full"
+              error={error}
+              className={`border py-1 px-2 w-full ${
+                error && error.error.includes("email")
+                  ? "border-red-400 "
+                  : "border-gray-400 "
+              }`}
             />
-          </div>
-          <div className="mt-5">
-            <input
+            <Input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="Passoword"
-              className="border border-gray-400 py-1 px-2 w-full"
+              placeholder="Password"
+              error={error}
+              className={`border py-1 px-2 w-full ${
+                error && error.error.includes("password")
+                  ? "border-red-400 "
+                  : "border-gray-400 "
+              }`}
             />
           </div>
           <div className="mt-5">
-            <button className="w-full bg-purple-500 py-3 text-center text-white">
+            <button
+              type="submit"
+              className="w-full bg-purple-500 py-3 text-center text-white"
+            >
               Login
             </button>
           </div>

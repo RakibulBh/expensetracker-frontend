@@ -9,6 +9,23 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext();
 
   const login = async (email, password) => {
+    if (email.length === 0 && password.length == 0) {
+      setError({ error: "password or email cannot be empty" });
+      return;
+    }
+
+    if (email.length === 0) {
+      setError({ error: "email cannot be empty." });
+      return;
+    }
+
+    if (password.length == 0) {
+      setError({
+        error: "password cannot be empty.",
+      });
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 
@@ -21,7 +38,7 @@ export const useLogin = () => {
     const data = await response.json();
 
     if (!response.ok) {
-      setError(data.message);
+      setError(data.error);
       setIsLoading(false);
     }
 
