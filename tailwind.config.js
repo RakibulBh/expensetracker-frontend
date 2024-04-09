@@ -5,13 +5,7 @@ export default {
     "./src/**/*.{jsx, js}"
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-      },
-  },
-    plugins: [
-      require('tailwind-scrollbar-hide')
-    ],
+    extend: {},
+    plugins: [ ],
   }
 }
