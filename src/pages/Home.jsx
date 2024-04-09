@@ -73,6 +73,8 @@ const Home = () => {
     newCategory,
     createdAt,
   }) => {
+    console.log(newAmount);
+
     if (newTitle.length === 0) {
       setErrors("Title cannot be empty.");
       return;

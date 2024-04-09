@@ -35,7 +35,7 @@ const Dashboard = () => {
     };
 
     fetchThisWeek();
-  }, [expenses]);
+  }, []);
 
   useEffect(() => {
     const fetchLastMonth = async () => {
@@ -56,7 +56,7 @@ const Dashboard = () => {
     };
 
     fetchLastMonth();
-  }, [expenses]);
+  }, []);
 
   useEffect(() => {
     const fetchThisMonth = async () => {
@@ -77,16 +77,12 @@ const Dashboard = () => {
     };
 
     fetchThisMonth();
-  }, [expenses]);
+  }, []);
 
   return (
     <div className="flex flex-col bg-purple-500 rounded-b-xl p-6 space-y-4">
       <div className="h-96 w-full bg-purple-200 rounded-xl p-10 shadow-lg">
-        <h1 className="text-3xl font-bold">This month's spending</h1>
-        <div className="flex flex-col items-center mt-10">
-          <p>Current score</p>
-          <h2 className="text-2xl font-bold">2,596</h2>
-        </div>
+        <h1>Coming soon</h1>
       </div>
       <div className="flex overflow-x-auto space-x-4">
         <div className="flex-none w-1/3 h-40 bg-purple-300 rounded-xl shadow-md p-7">
